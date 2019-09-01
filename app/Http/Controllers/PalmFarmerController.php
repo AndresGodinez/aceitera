@@ -18,14 +18,9 @@ class PalmFarmerController extends Controller
         return view('PalmFarmers.index', compact($palmFarmers));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('PalmFarmer.create');
     }
 
 
@@ -36,35 +31,19 @@ class PalmFarmerController extends Controller
         return redirect('palm-farmers');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\PalmFarmer  $palmFarmer
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(PalmFarmer $palmFarmer)
     {
-        //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\PalmFarmer  $palmFarmer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PalmFarmer $palmFarmer)
+
+    public function edit(int $id)
     {
-        //
+        $palmFarmer = PalmFarmer::find($id);
+        return view('PalmFarmer.edit', compact('palmFarmer'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PalmFarmer  $palmFarmer
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, PalmFarmer $palmFarmer)
     {
         //

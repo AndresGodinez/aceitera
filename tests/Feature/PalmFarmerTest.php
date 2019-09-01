@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\PalmFarmer;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use function factory;
 
 class PalmFarmerTest extends TestCase
 {
@@ -40,7 +42,19 @@ class PalmFarmerTest extends TestCase
     /** @test */
     function user_can_see_the_form_to_create_a_palm_farmer()
     {
+        $this->withoutExceptionHandling();
 
+        $user = $this->getDefaultUser();
+
+        $response =  $this->actingAs($user)->get('palm-farmer');
+
+        $response->assertViewIs('PalmFarmer.create');
+
+        $response->assertSee('Nombre');
+        $response->assertSee('Dirección');
+        $response->assertSee('Teléfono');
+        $response->assertSee('RFC');
+        $response->assertSee('Guardar');
     }
 
     /** @test */
