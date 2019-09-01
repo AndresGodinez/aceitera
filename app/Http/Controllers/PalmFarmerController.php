@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PalmFarmerStoreRequest;
 use App\PalmFarmer;
 use Illuminate\Http\Request;
+use function compact;
+use function redirect;
+use function view;
 
 class PalmFarmerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $palmFarmers = PalmFarmer::get();
+        return view('PalmFarmers.index', compact($palmFarmers));
     }
 
     /**
@@ -27,15 +28,12 @@ class PalmFarmerController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(PalmFarmerStoreRequest $request)
     {
-        //
+        $palmFarmer = new PalmFarmer();
+        $palmFarmer->createPalFarmer($request);
+        return redirect('palm-farmers');
     }
 
     /**

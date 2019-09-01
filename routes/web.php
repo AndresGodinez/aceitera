@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//PalmFarmers
+Route::get('/palm-farmers', 'PalmFarmerController@index')->name('palmFarmerIndex');
+Route::post('/palm-farmer', 'PalmFarmerController@store')->name('palmFarmerStore');
