@@ -48,7 +48,7 @@ class PalmFarmerTest extends TestCase
 
         $response =  $this->actingAs($user)->get('palm-farmer');
 
-        $response->assertViewIs('PalmFarmer.create');
+        $response->assertViewIs('PalmFarmers.create');
 
         $response->assertSee('Nombre');
         $response->assertSee('Dirección');
@@ -60,12 +60,60 @@ class PalmFarmerTest extends TestCase
     /** @test */
     function user_can_see_the_edit_form_with_data_palm_farmer()
     {
+        $this->withoutExceptionHandling();
 
+        $user = $this->getDefaultUser();
+
+        $palmFarmer = factory(PalmFarmer::class)->create();
+
+        $response =  $this->actingAs($user)->get('palm-farmer/'. $palmFarmer->id);
+
+        $response->assertViewIs('PalmFarmers.edit');
+
+        $response->assertSee('Nombre');
+        $response->assertSee($palmFarmer->name);
+        $response->assertSee('Dirección');
+        $response->assertSee($palmFarmer->address);
+        $response->assertSee('Teléfono');
+        $response->assertSee($palmFarmer->phone);
+        $response->assertSee('RFC');
+        $response->assertSee($palmFarmer->rfc);
+        $response->assertSee('Actualizar');
     }
 
     /** @test */
     function user_can_edit_data_palm_farmer()
     {
+        $this->withoutExceptionHandling();
 
+        $user = $this->getDefaultUser();
+
+        $oldName = 'Old Name';
+        $newName = 'New Name';
+
+        $palmFarmer = factory(PalmFarmer::class)->create([
+            'name' => $oldName
+        ]);
+
+        $this->assertDatabaseHas('palm_farmers', [
+            'name' => $oldName,
+            'address' => $palmFarmer->address,
+            'rfc' => $palmFarmer->rfc
+        ]);
+
+        $response =  $this->actingAs($user)->put('palm-farmer/'. $palmFarmer->id, [
+            'name' => $newName,
+            'address' => $palmFarmer->address,
+            'rfc' => $palmFarmer->rfc,
+            'phone' => $palmFarmer->phone,
+        ]);
+
+        $this->assertDatabaseHas('palm_farmers', [
+            'name' => $newName,
+            'address' => $palmFarmer->address,
+            'rfc' => $palmFarmer->rfc
+        ]);
+
+        $response->assertRedirect('palm-farmers');
     }
 }

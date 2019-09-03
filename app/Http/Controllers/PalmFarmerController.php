@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PalmFarmerStoreRequest;
+use App\Http\Requests\PalmFarmerUpdateRequest;
 use App\PalmFarmer;
 use Illuminate\Http\Request;
 use function compact;
@@ -15,12 +16,12 @@ class PalmFarmerController extends Controller
     public function index()
     {
         $palmFarmers = PalmFarmer::get();
-        return view('PalmFarmers.index', compact($palmFarmers));
+        return view('PalmFarmers.index', compact('palmFarmers'));
     }
 
     public function create()
     {
-        return view('PalmFarmer.create');
+        return view('PalmFarmers.create');
     }
 
 
@@ -40,23 +41,23 @@ class PalmFarmerController extends Controller
     public function edit(int $id)
     {
         $palmFarmer = PalmFarmer::find($id);
-        return view('PalmFarmer.edit', compact('palmFarmer'));
+        return view('PalmFarmers.edit', compact('palmFarmer'));
     }
 
 
-    public function update(Request $request, PalmFarmer $palmFarmer)
+    public function update(PalmFarmerUpdateRequest $request, $id)
     {
-        //
+        $palmFarmer = new PalmFarmer();
+        $palmFarmer->updatePalmFarmer($request);
+        return redirect('palm-farmers');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\PalmFarmer  $palmFarmer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(PalmFarmer $palmFarmer)
+
+    public function destroy(int $id)
     {
-        //
+        $palmFarmer = PalmFarmer::find($id);
+        $palmFarmer->delete();
+
+        return redirect('palm-farmers');
     }
 }

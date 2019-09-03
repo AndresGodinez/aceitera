@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Requests\PalmFarmerStoreRequest;
+use App\Http\Requests\PalmFarmerUpdateRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class PalmFarmer extends Model
@@ -16,4 +17,14 @@ class PalmFarmer extends Model
 
         $this->save();
     }
+
+    public function updatePalmFarmer(PalmFarmerUpdateRequest $request)
+    {
+        $this->name = $request->get('name');
+        $this->address = $request->get('address');
+        $this->phone = $request->get('phone');
+        $this->rfc = $request->get('rfc');
+        $this->save();
+    }
+
 }

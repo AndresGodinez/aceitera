@@ -24,3 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/palm-farmers', 'PalmFarmerController@index')->name('palmFarmerIndex');
 Route::post('/palm-farmer', 'PalmFarmerController@store')->name('palmFarmerStore');
 Route::get('/palm-farmer', 'PalmFarmerController@create')->name('palmFarmerCreate');
+Route::get('/palm-farmer/{id}', 'PalmFarmerController@edit')->name('palmFarmerEdit');
+Route::put('/palm-farmer/{id}', 'PalmFarmerController@update')->name('palmFarmerUpdate');
+Route::delete('/palm-farmer/{id}', 'PalmFarmerControllerPalmFarmerController@destroy')->name('palmFarmerDelete');
