@@ -19,12 +19,15 @@ class GroundTableSeeder extends Seeder
 
         $municipalities = Municipality::where('state_id', 5)->get();
 
+        foreach ($palmFarmers as $palmFarmer) {
+            factory(Ground::class, rand(1,5))->create([
+                'palm_farmer_id' => $palmFarmer->id,
+                'location' => $municipalities->random()->name,
+                'state_id' => 5,
+                'municipality_id' => $municipalities->random()->id,
+            ]);
+        }
 
-        factory(Ground::class, 100)->create([
-            'palm_farmer_id' => $palmFarmers->random()->id,
-            'location' => $municipalities->random()->name,
-            'state_id' => 5,
-            'municipality_id' => $municipalities->random()->id,
-        ]);
+
     }
 }
