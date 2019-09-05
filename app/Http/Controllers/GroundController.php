@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Ground;
 use App\Http\Requests\GroundStoreRequest;
 use App\Http\Requests\GroundUpdateRequest;
+use App\Municipality;
+use App\State;
 use Illuminate\Http\Request;
 use function compact;
 use function redirect;
@@ -22,7 +24,9 @@ class GroundController extends Controller
 
     public function create()
     {
-        return view('Grounds.create');
+        $municipalities = Municipality::where('state_id', 5)->get()
+                         ->sortBy('name');
+        return view('Grounds.create', compact('municipalities'));
     }
 
     public function store(GroundStoreRequest $request)

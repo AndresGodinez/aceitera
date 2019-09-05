@@ -5,6 +5,12 @@
         <div class="row">
             <form action="{{route('groundStore')}}" method="post">
                 @csrf
+                <input type="hidden"
+                       name="state_id"
+                       id="state_id"
+                       value="5"
+                       class="form-control"
+                >
                 <div class="form-group">
                     <label for="location">Localidad</label>
                     <input type="text"
@@ -14,23 +20,14 @@
                            placeholder="Localidad"
                     >
                 </div>
-                <div class="form-group">
-                    <label for="state_id">Estado</label>
-                    <input type="text"
-                           name="state_id"
-                           id="state_id"
-                           class="form-control"
-                           placeholder="RFC"
-                    >
-                </div>
+
                 <div class="form-group">
                     <label for="municipality_id">Municipio</label>
-                    <input type="text"
-                           name="municipality_id"
-                           id="municipality_id"
-                           class="form-control"
-                           placeholder="RFC"
-                    >
+                    <select class="form-control" name="municipality_id">
+                        @foreach($municipalities as $municipality)
+                            <option value="{{$municipality->id}}">{{$municipality->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="latitude">Latitud</label>

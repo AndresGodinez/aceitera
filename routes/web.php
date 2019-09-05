@@ -19,6 +19,7 @@ Route::delete('/palm-farmer/{id}', 'PalmFarmerControllerPalmFarmerController@des
 
 //Grounds
 Route::get('/grounds', 'GroundController@index')->name('groundIndex');
+Route::get('/ground', 'GroundController@create')->name('groundCreate');
 Route::post('/ground', 'GroundController@store')->name('groundStore');
 
 
