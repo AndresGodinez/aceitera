@@ -16,6 +16,7 @@ class GroundController extends Controller
     public function index()
     {
         $grounds = Ground::get();
+
         return view('Grounds.index', compact('grounds'));
     }
 
