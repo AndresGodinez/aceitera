@@ -13,6 +13,16 @@ class Ground extends Model
         return $this->belongsTo(PalmFarmer::class);
     }
 
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class);
+    }
+
     public function createGround(GroundStoreRequest $request)
     {
         $this->palm_farmer_id = $request->get('palm_farmer_id');
