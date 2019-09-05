@@ -9,16 +9,20 @@
                     <th>RFC</th>
                     <th>Dirección</th>
                     <th>Teléfono</th>
-                    <th rowspan="2">Acciones</th>
+                    <th colspan="2">Acciones</th>
                 </tr>
                 @foreach($palmFarmers as $palmFarmer)
                     <tr>
-                        <td>$palmFarmer->id</td>
-                        <td>$palmFarmer->name</td>
-                        <td>$palmFarmer->address</td>
-                        <td>$palmFarmer->phone</td>
+                        <td>{{$palmFarmer->id}}</td>
+                        <td>{{$palmFarmer->name}}</td>
+                        <td>{{$palmFarmer->rfc}}</td>
+                        <td>{{$palmFarmer->address}}</td>
+                        <td>{{$palmFarmer->phone}}</td>
                         <td>
-                            <button class="btn btn-info">Detalles</button>
+                            <a
+                                href="{{ route('palmFarmerShow', ['id'=> $palmFarmer->id]) }}"
+                                class="btn btn-primary"
+                            >Detalles</a>
                         </td>
                         <td>
                             <button class="btn btn-primary">Editar</button>

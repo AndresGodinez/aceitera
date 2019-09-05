@@ -10,4 +10,9 @@ class Municipality extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    public function grounds()
+    {
+        return $this->hasMany(Ground::class);
+    }
 }

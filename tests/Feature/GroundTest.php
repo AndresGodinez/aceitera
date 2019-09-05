@@ -18,8 +18,9 @@ class GroundTest extends TestCase
     /** @test */
     public function user_can_add_ground_to_palm_farmer()
     {
-        $user = $this->getDefaultUser();
+        $this->withoutExceptionHandling();
 
+        $user = $this->getDefaultUser();
 
         $this->seed('StatesAndMunicipalitiesSeeder');
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PalmFarmer extends Model
 {
-    public function ground()
+    public function grounds()
     {
         return $this->hasMany(Ground::class);
     }
