@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class PalmFarmer extends Model
 {
+    public function ground()
+    {
+        return $this->hasMany(Ground::class);
+    }
+
     public function createPalFarmer(PalmFarmerStoreRequest $request)
     {
         $this->name = $request->get('name');
