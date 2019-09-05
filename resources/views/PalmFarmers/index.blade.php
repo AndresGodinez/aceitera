@@ -15,10 +15,14 @@
                     <tr>
                         <td>{{$palmFarmer->id}}</td>
                         <td>{{$palmFarmer->name}}</td>
+                        <td>{{$palmFarmer->rfc}}</td>
                         <td>{{$palmFarmer->address}}</td>
                         <td>{{$palmFarmer->phone}}</td>
                         <td>
-                            <button class="text-white btn btn-info">Detalles</button>
+                            <a
+                                href="{{ route('palmFarmerShow', ['id'=> $palmFarmer->id]) }}"
+                                class="btn btn-primary"
+                            >Detalles</a>
                         </td>
                         <td>
                             <button class="btn btn-primary">Editar</button>

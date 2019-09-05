@@ -33,8 +33,11 @@ class PalmFarmerController extends Controller
     }
 
 
-    public function show(PalmFarmer $palmFarmer)
+    public function show(int $id)
     {
+        $palmFarmer = PalmFarmer::findOrFail($id);
+
+        return view('PalmFarmers.show', compact('palmFarmer'));
     }
 
 
