@@ -19,7 +19,7 @@ class CreateGroundsTable extends Migration
             $table->bigInteger('palm_farmer_id')->unsigned();
             $table->foreign('palm_farmer_id')->references('id')->on('palm_farmers');
 
-            $table->bigInteger('location');
+            $table->string('location');
             $table->bigInteger('municipality_id');
             $table->bigInteger('state_id');
             $table->string('latitude');

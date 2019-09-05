@@ -3,83 +3,61 @@
 namespace App\Http\Controllers;
 
 use App\Ground;
+use App\Http\Requests\GroundStoreRequest;
+use App\Http\Requests\GroundUpdateRequest;
 use Illuminate\Http\Request;
+use function compact;
+use function redirect;
+use function view;
 
 class GroundController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $grounds = Ground::get();
+        return view('Grounds.index', compact('grounds'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('Grounds.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(GroundStoreRequest $request)
     {
-        //
+        $ground = new Ground();
+        $ground->createGround($request);
+
+        return redirect('grounds');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Ground  $ground
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ground $ground)
+    public function show(int $id)
     {
-        //
+        $ground = Ground::findOrFail($id);
+        return view('Grounds.show', compact('ground'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Ground  $ground
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ground $ground)
+    public function edit(int $id)
     {
-        //
+        $ground = Ground::findOrFail($id);
+        return view('Grounds.edit', compact('ground'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ground  $ground
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ground $ground)
+
+    public function update(GroundUpdateRequest $request, int $id)
     {
-        //
+        $ground = new Ground();
+        $ground->updateGround($id, $request);
+
+        return redirect('grounds');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Ground  $ground
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ground $ground)
+
+    public function destroy(int $id)
     {
-        //
+        $ground = Ground::findOrFail($id);
+        $ground->delete();
+        return redirect('grounds');
     }
 }
