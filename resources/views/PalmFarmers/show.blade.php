@@ -10,6 +10,12 @@
                     <p class="card-text">{{$palmFarmer->address}}</p>
                     <p class="card-text">{{$palmFarmer->phone}}</p>
                 </div>
+                <form class="h-100" action="{{route('captureCreate')}}" method="get">
+                    @csrf
+                    <input type="hidden" name="palmFarmerId" value="{{ $palmFarmer->id }}">
+                    <button type="submit" class=" btn-block btn btn-primary">Crear captura</button>
+                </form>
+
             </div>
         </div>
     </div>
@@ -42,5 +48,28 @@
         </div>
     </div>
 
+    @endif
+
+    @if($palmFarmer->palmCaptures)
+
+        <div class="container mt-4">
+            <div class="row">
+                <h3>Capturas Realizadas</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>id</th>
+                        <th>Toneladas</th>
+                        <th>Fecha Captura</th>
+                    </tr>
+                    @foreach($palmFarmer->palmCaptures as $capture)
+                        <tr>
+                            <td>{{$capture->id}}</td>
+                            <td>{{$capture->tons}}</td>
+                            <td>{{$capture->created_at}}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </div>
     @endif
 @endsection

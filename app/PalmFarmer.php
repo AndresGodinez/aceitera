@@ -9,15 +9,21 @@ use Illuminate\Http\Request;
 
 class PalmFarmer extends Model
 {
+    public function grounds()
+    {
+        return $this->hasMany(Ground::class);
+    }
+
+    public function palmCaptures()
+    {
+        return $this->hasMany(PalmCapture::class);
+    }
+
     public function scopeName($query, $name)
     {
         if ($name){
             return $query->where('name', 'Like', "%$name%");
         }
-    }
-    public function grounds()
-    {
-        return $this->hasMany(Ground::class);
     }
 
     public function getPalmFarmers(Request $request)

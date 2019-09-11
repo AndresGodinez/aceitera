@@ -23,4 +23,7 @@ Route::get('/grounds', 'GroundController@index')->name('groundIndex');
 Route::get('/ground', 'GroundController@create')->name('groundCreate');
 Route::post('/ground', 'GroundController@store')->name('groundStore');
 
+//Captures
+Route::post('/capture', 'PalmCaptureController@store')->name('captureStore');
+Route::get('/capture', 'PalmCaptureController@create')->name('captureCreate');
 
