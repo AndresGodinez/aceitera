@@ -5,12 +5,28 @@ namespace App;
 use App\Http\Requests\PalmFarmerStoreRequest;
 use App\Http\Requests\PalmFarmerUpdateRequest;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class PalmFarmer extends Model
 {
+    public function scopeName($query, $name)
+    {
+        if ($name){
+            return $query->where('name', 'Like', "%$name%");
+        }
+    }
     public function grounds()
     {
         return $this->hasMany(Ground::class);
+    }
+
+    public function getPalmFarmers(Request $request)
+    {
+        $name = $request->get('name');
+
+        return $this->orderBy('id', 'desc')
+                ->name($name)
+                ->paginate();
     }
 
     public function createPalFarmer(PalmFarmerStoreRequest $request)

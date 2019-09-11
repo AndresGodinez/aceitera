@@ -13,9 +13,11 @@ use function view;
 class PalmFarmerController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $palmFarmers = PalmFarmer::get();
+        $instance = new PalmFarmer();
+
+        $palmFarmers = $instance->getPalmFarmers($request);
         return view('PalmFarmers.index', compact('palmFarmers'));
     }
 

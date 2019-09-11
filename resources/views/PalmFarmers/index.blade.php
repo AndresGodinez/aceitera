@@ -2,6 +2,20 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <form action="{{route('palmFarmerIndex')}}">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control"
+                           placeholder="Nombre"
+                           id="name"
+                           name="name">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
@@ -30,6 +44,7 @@
                     </tr>
                 @endforeach
             </table>
+            {{ $palmFarmers->render() }}
         </div>
     </div>
 @endsection
