@@ -2,7 +2,7 @@
 
 use App\Ground;
 use App\Municipality;
-use App\PalmCapture;
+use \App\CaptureGround;
 use App\PalmFarmer;
 use App\State;
 use Illuminate\Database\Seeder;
@@ -21,15 +21,19 @@ class GroundTableSeeder extends Seeder
         $municipalities = Municipality::where('state_id', 5)->get();
 
         foreach ($palmFarmers as $palmFarmer) {
-            factory(Ground::class, rand(1,5))->create([
+            $grounds = factory(Ground::class, rand(1,5))->create([
                 'palm_farmer_id' => $palmFarmer->id,
                 'location' => $municipalities->random()->name,
                 'state_id' => 5,
                 'municipality_id' => $municipalities->random()->id,
             ]);
-            factory(PalmCapture::class, rand(1,3))->create([
-                'palm_farmer_id' => $palmFarmer->id
-            ]);
+
+            foreach ($grounds as $ground) {
+                factory(CaptureGround::class, rand(1,5))->create([
+                  'ground_id' => $ground->id,
+                ]);
+            }
+
         }
 
 

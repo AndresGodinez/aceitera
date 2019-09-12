@@ -27,3 +27,8 @@ Route::post('/ground', 'GroundController@store')->name('groundStore');
 Route::post('/capture', 'PalmCaptureController@store')->name('captureStore');
 Route::get('/capture', 'PalmCaptureController@create')->name('captureCreate');
 
+//Reports
+
+Route::get('/capture-report', 'CaptureGroundController@index')->name('captureReport');
+
+

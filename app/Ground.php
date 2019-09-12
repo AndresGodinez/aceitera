@@ -13,6 +13,11 @@ class Ground extends Model
         return $this->belongsTo(PalmFarmer::class);
     }
 
+    public function capture()
+    {
+        return $this->hasMany(CaptureGround::class);
+    }
+
     public function state()
     {
         return $this->belongsTo(State::class);
