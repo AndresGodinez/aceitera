@@ -8,6 +8,9 @@
                     <th>Nombre Palmicultor</th>
                     <th>Toneladas</th>
                     <th>Fecha Captura</th>
+                    <th>Localidad</th>
+                    <th>Municipio</th>
+                    <th>Estado</th>
                     <th>Latitud</th>
                     <th>Longitud</th>
                     <th colspan="2">Acciones</th>
@@ -18,6 +21,9 @@
                         <td>{{$capture->ground->palmFarmer->name}}</td>
                         <td>{{$capture->tons}}</td>
                         <td>{{$capture->created_at}}</td>
+                        <td>{{$capture->ground->location}}</td>
+                        <td>{{$capture->ground->state->name}}</td>
+                        <td>{{$capture->ground->municipality->name}}</td>
                         <td>{{$capture->ground->latitude}}</td>
                         <td>{{$capture->ground->longitude}}</td>
                         <td>
