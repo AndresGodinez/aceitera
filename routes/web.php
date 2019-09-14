@@ -30,5 +30,7 @@ Route::get('/capture', 'PalmCaptureController@create')->name('captureCreate');
 //Reports
 
 Route::get('/capture-report', 'CaptureGroundController@index')->name('captureReport');
+Route::get('/download-capture-report', 'DownloadCaptureReportController')->name('downloadCaptureReport');
+
 
 

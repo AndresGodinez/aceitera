@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        <div class="row flex-lg-row-reverse m-2">
+            <a href="{{route('downloadCaptureReport')}}"
+               class="text-white btn btn-info">Descargar</a>
+        </div>
         <div class="row">
             <table class="table table-striped">
                 <tr>
